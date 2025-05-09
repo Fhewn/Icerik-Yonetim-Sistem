@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Geliştirme Sınavı</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .progress {
+            height: 10px;
+            margin-bottom: 20px;
+        }
+        .question-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            border-color: #6366f1;
+            background: #f8fafc;
+        }
+        .option-btn.selected {
+            border-color: #6366f1;
+            background: #6366f1;
+            color: white;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            background: #6366f1;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: #4f46e5;
+        }
+        .nav-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" 
+                         style="width: <%= (soruNo / toplam) * 100 %>%" 
+                         aria-valuenow="<%= (soruNo / toplam) * 100 %>" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5>Soru <%= soruNo %>/<%= toplam %></h5>
+                    <div class="user-info">
+                        <span class="badge bg-primary"><%= kullanici.ad %> <%= kullanici.soyad %></span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <h4><%= soru %></h4>
+                    <div class="options-container">
+                        <% secenekler.forEach((secenek, index) => { %>
+                            <button class="option-btn" onclick="selectOption(this, '<%= secenek[0] %>')">
+                                <%= secenek %>
+                            </button>
+                        <% }); %>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <% if (soruNo > 1) { %>
+                        <a href="?s=<%= soruNo - 1 %>" class="nav-btn">Önceki Soru</a>
+                    <% } else { %>
+                        <button disabled class="nav-btn">Önceki Soru</button>
+                    <% } %>
+
+                    <% if (soruNo < toplam) { %>
+                        <a href="?s=<%= soruNo + 1 %>" class="nav-btn" id="nextBtn">Sonraki Soru</a>
+                    <% } else { %>
+                        <button onclick="submitExam()" class="nav-btn btn-success">Sınavı Bitir</button>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let userAnswers = JSON.parse(localStorage.getItem('backendAnswers') || '{}');
+        let currentQuestion = <%= soruNo %>;
+        
+        // Sayfa yüklendiğinde önceki cevabı seç
+        window.onload = function() {
+            if (userAnswers[currentQuestion]) {
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    if (btn.textContent.trim().startsWith(userAnswers[currentQuestion])) {
+                        btn.classList.add('selected');
+                    }
+                });
+            }
+        };
+
+        function selectOption(button, answer) {
+            // Önceki seçimi kaldır
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Yeni seçimi işaretle
+            button.classList.add('selected');
+            
+            // Cevabı kaydet
+            userAnswers[currentQuestion] = answer;
+            localStorage.setItem('backendAnswers', JSON.stringify(userAnswers));
+        }
+
+        function submitExam() {
+            const correctAnswers = <%- JSON.stringify(backendSorular.map(s => s.dogru)) %>;
+            let dogru = 0;
+            let yanlis = 0;
+            
+            // Cevapları kontrol et
+            correctAnswers.forEach((answer, index) => {
+                if (userAnswers[index + 1] === answer) {
+                    dogru++;
+                } else if (userAnswers[index + 1]) {
+                    yanlis++;
+                }
+            });
+            
+            const oran = Math.round((dogru / correctAnswers.length) * 100);
+            
+            // Sonuçları URL'e ekle
+            const resultUrl = `/denemeler/backend/sonuc?ad=${encodeURIComponent('<%= kullanici.ad %>')}&soyad=${encodeURIComponent('<%= kullanici.soyad %>')}&okulno=${encodeURIComponent('<%= kullanici.okulno %>')}&dogru=${dogru}&yanlis=${yanlis}&oran=${oran}`;
+            
+            // Local storage'ı temizle
+            localStorage.removeItem('backendAnswers');
+            
+            // Sonuç sayfasına yönlendir
+            window.location.href = resultUrl;
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Programlama Denemesi | Sonuçlar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #f8fafc 60%, #a5b4fc22 100%);
+      color: #1e293b;
+      min-height: 100vh;
+    }
+    .results-container {
+      max-width: 800px;
+      margin: 3rem auto;
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.10);
+      padding: 2.5rem 2rem 2rem 2rem;
+      animation: fadeInUp 1s;
+    }
+    .results-title {
+      color: #6366f1;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #6366f122;
+    }
+    th, td {
+      padding: 1rem 0.7rem;
+      text-align: center;
+    }
+    th {
+      background: #6366f1;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    tr:nth-child(even) { background: #f3f4f6; }
+    tr:nth-child(odd) { background: #fff; }
+    .rank {
+      font-weight: 800;
+      color: #fbbf24;
+      font-size: 1.1rem;
+    }
+    .success {
+      color: #22c55e;
+      font-weight: 700;
+    }
+    .fail {
+      color: #ef4444;
+      font-weight: 700;
+    }
+    .percent {
+      font-weight: 700;
+      color: #6366f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="results-container">
+    <div class="results-title">Web Programlama Denemesi Sonuçları</div>
+    <table>
+      <tr>
+        <th>Sıra</th>
+        <th>Ad Soyad</th>
+        <th>Okul No</th>
+        <th>Doğru</th>
+        <th>Yanlış</th>
+        <th>Başarı Oranı</th>
+      </tr>
+      <% katilimcilar.forEach(function(k, i) { %>
+        <tr>
+          <td class="rank"><%= i+1 %></td>
+          <td><%= k.ad %> <%= k.soyad %></td>
+          <td><%= k.okulno %></td>
+          <td class="success"><%= k.dogru %></td>
+          <td class="fail"><%= k.yanlis %></td>
+          <td class="percent"><%= k.oran %> %</td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+</body>
+</html> 

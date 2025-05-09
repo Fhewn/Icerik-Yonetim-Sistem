@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Geliştirme Sınavı - Giriş</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #fbbf24;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 8px 32px rgba(99,102,241,0.10);
+            --shadow-sm: 0 2px 8px rgba(99,102,241,0.05);
+            --radius: 1.5rem;
+            --radius-sm: 1rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .exam-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-sm);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99,102,241,0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <i class="fas fa-code"></i>
+                İçerik Yönetim Sistemi
+            </a>
+            <div class="nav-links">
+                <a href="/dersler"><i class="fas fa-book"></i> Dersler</a>
+                <a href="/denemeler"><i class="fas fa-tasks"></i> Denemeler</a>
+                <a href="/katilimcilar"><i class="fas fa-users"></i> Katılımcılar</a>
+                <a href="/hakkimda"><i class="fas fa-user"></i> Hakkımda</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Backend Geliştirme Sınavı</h1>
+            <p>Node.js, API, sunucu ve backend teknolojileriyle ilgili 15 soruluk deneme sınavına hoş geldiniz.</p>
+        </div>
+
+        <form class="exam-form" id="girisForm">
+            <div class="form-group">
+                <label for="ad">Adınız</label>
+                <input type="text" id="ad" name="ad" required>
+            </div>
+            <div class="form-group">
+                <label for="soyad">Soyadınız</label>
+                <input type="text" id="soyad" name="soyad" required>
+            </div>
+            <div class="form-group">
+                <label for="okulno">Okul Numaranız</label>
+                <input type="text" id="okulno" name="okulno" required>
+            </div>
+            <button type="submit" class="submit-btn">Sınava Başla</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('girisForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                ad: document.getElementById('ad').value,
+                soyad: document.getElementById('soyad').value,
+                okulno: document.getElementById('okulno').value
+            };
+
+            try {
+                const response = await fetch('/denemeler/backend/giris', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    window.location.href = '/denemeler/backend';
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+                alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+            }
+        });
+    </script>
+</body>
+</html> 

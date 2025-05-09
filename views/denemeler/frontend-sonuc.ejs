@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Frameworks Sınavı Sonuçları</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-section text-center mb-5">
+                    <h1 class="display-4">Frontend Frameworks Sınavı Sonuçları</h1>
+                    <p class="lead">Sınav sonuçlarınız aşağıda listelenmiştir.</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sıra</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Okul No</th>
+                                <th>Doğru</th>
+                                <th>Yanlış</th>
+                                <th>Başarı Oranı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% katilimcilar.forEach((katilimci, index) => { %>
+                                <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><%= katilimci.ad %></td>
+                                    <td><%= katilimci.soyad %></td>
+                                    <td><%= katilimci.okulno %></td>
+                                    <td><%= katilimci.dogru %></td>
+                                    <td><%= katilimci.yanlis %></td>
+                                    <td>
+                                        <span class="badge <%= katilimci.oran >= 70 ? 'bg-success' : katilimci.oran >= 50 ? 'bg-warning' : 'bg-danger' %>">
+                                            <%= katilimci.oran %>%
+                                        </span>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="/denemeler" class="btn btn-primary">Deneme Listesine Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

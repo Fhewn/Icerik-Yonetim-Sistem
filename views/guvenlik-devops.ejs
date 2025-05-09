@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Güvenlik ve DevOps Sınavı | İçerik Yönetim Sistemi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #a5b4fc;
+      --accent: #fbbf24;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --card-bg: #fff;
+      --shadow: 0 8px 32px rgba(99,102,241,0.10);
+      --radius: 1.5rem;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .navbar {
+      background: var(--card-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 1.2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: fadeInDown 1s;
+      gap: 2rem;
+    }
+    .navbar .brand {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-right: 2rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .navbar .menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .navbar .menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      position: relative;
+      padding: 0.2rem 0.5rem;
+    }
+    .navbar .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+      margin: 0 auto;
+    }
+    .navbar .menu a:hover {
+      color: var(--primary);
+    }
+    .navbar .menu a:hover::after {
+      width: 100%;
+    }
+    .hero-header {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: linear-gradient(90deg, #6366f1 60%, #a5b4fc 100%);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1rem 2rem 1rem;
+      border-radius: 0 0 2rem 2rem;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.10);
+      margin-bottom: 3rem;
+      animation: fadeInDown 1s;
+    }
+    .hero-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+    }
+    .hero-header p {
+      font-size: 1.2rem;
+      color: #e0e7ef;
+      margin-bottom: 0;
+    }
+    .exam-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .question {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: #f8fafc;
+      border-radius: 1rem;
+      border: 1px solid #e2e8f0;
+    }
+    .question h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .option:hover {
+      background: #f1f5f9;
+      border-color: var(--primary);
+    }
+    .option input[type="radio"] {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 2rem;
+    }
+    .submit-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/" class="brand"><i class="fas fa-graduation-cap"></i> İçerik Yönetim Sistemi</a>
+    <nav class="menu">
+      <a href="/">Ana Sayfa</a>
+      <a href="/dersler">Dersler</a>
+      <a href="/katilimcilar">Katılımcılar</a>
+      <a href="/denemeler">Denemeler</a>
+      <a href="/hakkimda">Hakkımda</a>
+    </nav>
+  </div>
+
+  <div class="hero-header">
+    <h1>Güvenlik ve DevOps Sınavı</h1>
+    <p>Siber güvenlik, DevOps ve otomasyon süreçleriyle ilgili 15 soruluk deneme</p>
+  </div>
+
+  <div class="exam-container">
+    <form id="examForm">
+      <div class="question">
+        <h3>1. Docker nedir?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q1" value="a">
+            <span>a) Bir programlama dili</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q1" value="b">
+            <span>b) Konteynerizasyon platformu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q1" value="c">
+            <span>c) Veritabanı yönetim sistemi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q1" value="d">
+            <span>d) Web sunucusu</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>2. CI/CD ne anlama gelir?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q2" value="a">
+            <span>a) Continuous Integration / Continuous Deployment</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q2" value="b">
+            <span>b) Computer Interface / Computer Design</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q2" value="c">
+            <span>c) Code Integration / Code Development</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q2" value="d">
+            <span>d) Cloud Integration / Cloud Deployment</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>3. XSS (Cross-Site Scripting) saldırısı nedir?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q3" value="a">
+            <span>a) Veritabanı saldırısı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q3" value="b">
+            <span>b) Web sayfasına zararlı kod enjekte etme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q3" value="c">
+            <span>c) Sunucu saldırısı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q3" value="d">
+            <span>d) Ağ saldırısı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>4. Kubernetes ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q4" value="a">
+            <span>a) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q4" value="b">
+            <span>b) Konteyner orkestrasyonu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q4" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q4" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>5. SSL/TLS sertifikası ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q5" value="a">
+            <span>a) Veritabanı şifreleme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q5" value="b">
+            <span>b) Web trafiğini şifreleme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q5" value="c">
+            <span>c) Dosya şifreleme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q5" value="d">
+            <span>d) E-posta şifreleme</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>6. Jenkins ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q6" value="a">
+            <span>a) CI/CD otomasyonu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q6" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q6" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q6" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>7. SQL Injection saldırısı nedir?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q7" value="a">
+            <span>a) Veritabanına zararlı SQL kodu enjekte etme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7" value="b">
+            <span>b) Web sayfası saldırısı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7" value="c">
+            <span>c) Sunucu saldırısı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7" value="d">
+            <span>d) Ağ saldırısı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>8. Docker Compose ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q8" value="a">
+            <span>a) Çoklu konteyner yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q8" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q8" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q8" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>9. CSRF (Cross-Site Request Forgery) saldırısı nedir?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q9" value="a">
+            <span>a) Kullanıcı adına istek gönderme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q9" value="b">
+            <span>b) Web sayfası saldırısı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q9" value="c">
+            <span>c) Sunucu saldırısı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q9" value="d">
+            <span>d) Ağ saldırısı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>10. GitLab CI/CD ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q10" value="a">
+            <span>a) Sürekli entegrasyon ve dağıtım</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q10" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q10" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q10" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>11. Docker Swarm ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q11" value="a">
+            <span>a) Konteyner kümeleme</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q11" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q11" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q11" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>12. OWASP nedir?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q12" value="a">
+            <span>a) Web uygulama güvenliği projesi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q12" value="b">
+            <span>b) Veritabanı yönetim sistemi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q12" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q12" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>13. Docker Volume ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q13" value="a">
+            <span>a) Veri kalıcılığı</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q13" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q13" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q13" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>14. Docker Network ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q14" value="a">
+            <span>a) Konteynerler arası iletişim</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q14" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q14" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q14" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>15. Docker Registry ne için kullanılır?</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q15" value="a">
+            <span>a) Docker imajlarını depolama</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q15" value="b">
+            <span>b) Veritabanı yönetimi</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q15" value="c">
+            <span>c) Web sunucusu</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q15" value="d">
+            <span>d) Güvenlik duvarı</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Sınavı Tamamla</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('examForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Sınav tamamlandı! Sonuçlarınız değerlendiriliyor...');
+    });
+  </script>
+</body>
+</html> 

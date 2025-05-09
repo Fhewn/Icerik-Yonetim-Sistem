@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hakkımda | İçerik Yönetim Sistemi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #a5b4fc;
+      --accent: #fbbf24;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --card-bg: #fff;
+      --shadow: 0 8px 32px rgba(99,102,241,0.10);
+      --radius: 1.5rem;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .navbar {
+      background: var(--card-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 1.2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: fadeInDown 1s;
+      gap: 2rem;
+    }
+    .navbar .brand {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-right: 2rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .navbar .menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .navbar .menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      position: relative;
+      padding: 0.2rem 0.5rem;
+    }
+    .navbar .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+      margin: 0 auto;
+    }
+    .navbar .menu a:hover, .navbar .menu a.active {
+      color: var(--primary);
+    }
+    .navbar .menu a:hover::after, .navbar .menu a.active::after {
+      width: 100%;
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .navbar .menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .navbar .brand {
+        margin-right: 0;
+      }
+    }
+    .main-section {
+      max-width: 1100px;
+      margin: 2.5rem auto 3rem auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.2rem 2rem 2rem 2rem;
+      max-width: 340px;
+      min-width: 270px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: center;
+      animation: fadeInUp 1s;
+    }
+    .profile-card img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      box-shadow: 0 4px 24px #6366f155;
+      border: 6px solid #fff;
+    }
+    .profile-card .name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: var(--primary);
+    }
+    .profile-card .role {
+      color: #888;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .profile-card .skills {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .profile-card .skills-title {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .profile-card .skill-bar {
+      margin-bottom: 0.5rem;
+    }
+    .profile-card .skill-label {
+      font-size: 0.98rem;
+      font-weight: 500;
+      margin-bottom: 0.1rem;
+      color: var(--primary);
+    }
+    .profile-card .bar {
+      background: #e5e7eb;
+      border-radius: 1em;
+      height: 10px;
+      overflow: hidden;
+    }
+    .profile-card .fill {
+      background: linear-gradient(90deg,#6366f1 60%,#a5b4fc 100%);
+      height: 100%;
+      border-radius: 1em;
+    }
+    .profile-card .contact {
+      font-size: 0.98rem;
+      text-align: left;
+      margin-top: 0.7rem;
+    }
+    .profile-card .contact b {
+      color: var(--primary);
+    }
+    .about-card {
+      flex: 1 1 350px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.2rem 2rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      animation: fadeInUp 1.1s;
+      min-width: 300px;
+    }
+    .about-card h2 {
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 0.7rem;
+    }
+    .about-card p {
+      font-size: 1.08rem;
+      margin-bottom: 0.2rem;
+    }
+    .projects-section {
+    max-width: 500px;
+    margin: 0 auto 3rem auto;
+    padding: 0 1rem;
+  }
+  .project-card-modern {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(99,102,241,0.13);
+    padding: 2.2rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1.1s;
+  }
+  .project-card-modern:hover {
+    box-shadow: 0 16px 48px rgba(99,102,241,0.18);
+    transform: translateY(-6px) scale(1.03);
+  }
+  .project-icon-modern {
+    background: linear-gradient(135deg, #fbbf24 60%, #6366f1 100%);
+    color: #fff;
+    border-radius: 1.2rem;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 12px #6366f144;
+  }
+  .project-title-modern {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 0.1rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .project-url-modern {
+    font-size: 1.05rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+    text-align: center;
+  }
+  .project-desc-modern {
+    text-align: center;
+    color: #444;
+    font-size: 1.08rem;
+    margin-bottom: 1.1rem;
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+  .project-btn-modern {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    background: linear-gradient(90deg,#6366f1 0%,#a5b4fc 100%);
+    color: #fff;
+    border-radius: 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #6366f122;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  .project-btn-modern:hover {
+    background: linear-gradient(90deg,#4f46e5 0%,#818cf8 100%);
+    box-shadow: 0 4px 16px #6366f144;
+    transform: scale(1.04);
+  }
+    .social-section {
+      max-width: 900px;
+      margin: 0 auto 2.5rem auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .social-title {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .social-icons a {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      background: #fff;
+      color: var(--primary);
+      box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px #6366f155;
+      transform: scale(1.13);
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+    .project-card-modern {
+      padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+    }
+    .projects-section {
+      padding: 0 0.2rem;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/" class="brand"><i class="fas fa-graduation-cap"></i> İçerik Yönetim Sistemi</a>
+    <nav class="menu">
+      <a href="/">Ana Sayfa</a>
+      <a href="/dersler">Dersler</a>
+      <a href="/katilimcilar">Katılımcılar</a>
+      <a href="/denemeler">Denemeler</a>
+      <a href="/hakkimda" class="active">Hakkımda</a>
+    </nav>
+  </div>
+  <div class="main-section">
+    <div class="profile-card">
+      <img src="https://ui-avatars.com/api/?name=Batuh+Özler&size=180&background=random" alt="Profil Fotoğrafı">
+      <div class="name">Batuhan Özler</div>
+      <div class="role">Software Developer</div>
+      <div class="skills">
+        <div class="skills-title">Yeteneklerim</div>
+        <div class="skill-bar">
+          <div class="skill-label">Asp.Net</div>
+          <div class="bar"><div class="fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-label">Sql</div>
+          <div class="bar"><div class="fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-label">Html</div>
+          <div class="bar"><div class="fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-label">Css</div>
+          <div class="bar"><div class="fill" style="width:60%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-label">Python</div>
+          <div class="bar"><div class="fill" style="width:76%"></div></div>
+        </div>
+      </div>
+      <div class="contact">
+        <div><b>Email:</b> batuhanozlerbusiness@gmail.com</div>
+        <div><b>Telefon:</b>1246846039</div>
+      </div>
+    </div>
+    <div class="about-card">
+      <h2>Hakkımda</h2>
+      <p>Edirne Meslek Yüksekokulu Mobil Teknolojileri 1. sınıf öğrencisiyim. Yazılıma büyük bir tutkum var ve bu alanda kendimi daha da geliştirmek için çok çalışıyorum. Web geliştirme alanında kendimi ilerletiyorum daha başarılı olacağıma ve istediğim noktaya geleceğime inanıyorum.</p>
+    </div>
+  </div>
+  <div class="projects-section">
+    <h3 class="fw-bold mb-4" style="color:var(--primary); text-align:center;">Yaptığım Projeler</h3>
+    <div class="project-card-modern">
+      <div class="project-icon-modern">
+        <i class="fas fa-pizza-slice"></i>
+      </div>
+      <div class="project-title-modern">Pizza House</div>
+      <div class="project-url-modern">pizza-house.pages.dev</div>
+      <div class="project-desc-modern">Pizza House, taze malzemeler ve hızlı teslimat mottosuyla hazırlanmış modern bir e-ticaret pizza sipariş platformudur.</div>
+      <a href="https://pizza-house.pages.dev/" target="_blank" class="project-btn-modern">
+        <b>Projeyi incele →</b>
+      </a>
+    </div>
+  </div>
+  <div class="social-section">
+    <div class="social-title">Beni Takip Edin</div>
+    <div class="social-icons">
+      <a href="https://github.com/Fhewn" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/batuhan-%C3%B6zler-00b96a248/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
+</body>
+</html> 

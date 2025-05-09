@@ -1,0 +1,31 @@
+# Mevcut dizinde
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/Fhewn/Icerik-Yonetim-Sistemleri-Final-Odev.git
+git push -u origin main
+
+# Fly CLI Kurulumu
+iwr https://fly.io/install.ps1 -useb | iex
+
+app = "icerik-yonetim-sistemi"
+primary_region = "fra"
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[env]
+  PORT = "8080"
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "80"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"

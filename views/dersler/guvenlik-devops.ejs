@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Güvenlik ve DevOps | İçerik Yönetim Sistemi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #a5b4fc;
+      --accent: #fbbf24;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --card-bg: #fff;
+      --shadow: 0 8px 32px rgba(99,102,241,0.10);
+      --radius: 1.5rem;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .navbar {
+      background: var(--card-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 1.2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: fadeInDown 1s;
+      gap: 2rem;
+    }
+    .navbar .brand {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-right: 2rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .navbar .menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .navbar .menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      position: relative;
+      padding: 0.2rem 0.5rem;
+    }
+    .navbar .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+      margin: 0 auto;
+    }
+    .navbar .menu a:hover {
+      color: var(--primary);
+    }
+    .navbar .menu a:hover::after {
+      width: 100%;
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .navbar .menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .navbar .brand {
+        margin-right: 0;
+      }
+    }
+    .hero-header {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: linear-gradient(90deg, #6366f1 60%, #fbbf24 100%);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1rem 2rem 1rem;
+      border-radius: 0 0 2rem 2rem;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.10);
+      margin-bottom: 3rem;
+      animation: fadeInDown 1s;
+    }
+    .hero-header .icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 0 4px 24px #0004;
+    }
+    .hero-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+    }
+    .hero-header p {
+      font-size: 1.2rem;
+      color: #fffbe7;
+      margin-bottom: 0;
+    }
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .badge {
+      background: var(--secondary);
+      color: #fff;
+      border-radius: 1rem;
+      padding: 0.3em 1em;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-block;
+    }
+    .section-title {
+      color: var(--primary);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 0.7rem;
+    }
+    .content ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .content ul li {
+      margin-bottom: 0.5rem;
+      color: #6366f1;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .usage {
+      background: var(--secondary);
+      color: #fff;
+      border-radius: 1rem;
+      padding: 1.2rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/" class="brand"><i class="fas fa-graduation-cap"></i> İçerik Yönetim Sistemi</a>
+    <nav class="menu">
+      <a href="/">Ana Sayfa</a>
+      <a href="/dersler">Dersler</a>
+      <a href="/katilimcilar">Katılımcılar</a>
+      <a href="/denemeler">Denemeler</a>
+      <a href="/hakkimda">Hakkımda</a>
+    </nav>
+  </div>
+  <div class="hero-header">
+    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+    <h1>Güvenlik ve DevOps</h1>
+    <p>Modern yazılım geliştirmede güvenlik, otomasyon ve sürekli entegrasyon/deploy süreçleri.</p>
+  </div>
+  <div class="content">
+    <a href="/dersler" class="back-link"><i class="fas fa-arrow-left"></i> Tüm Dersler</a>
+    <div class="badges">
+      <span class="badge">Siber Güvenlik</span>
+      <span class="badge">CI/CD</span>
+      <span class="badge">Docker</span>
+      <span class="badge">Kubernetes</span>
+      <span class="badge">Monitoring</span>
+    </div>
+    <div class="section-title">Ders İçeriği</div>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> Temel Güvenlik Kavramları</li>
+      <li><i class="fas fa-check-circle"></i> Kimlik Doğrulama ve Yetkilendirme</li>
+      <li><i class="fas fa-check-circle"></i> Güvenli Kodlama Prensipleri</li>
+      <li><i class="fas fa-check-circle"></i> CI/CD Süreçleri</li>
+      <li><i class="fas fa-check-circle"></i> Docker ve Konteynerizasyon</li>
+      <li><i class="fas fa-check-circle"></i> Kubernetes ile Orkestrasyon</li>
+      <li><i class="fas fa-check-circle"></i> İzleme ve Log Yönetimi</li>
+    </ul>
+    <div class="section-title">Nerede Kullanılır?</div>
+    <div class="usage">
+      <ul style="color:#fff;">
+        <li><i class="fas fa-server"></i> Sunucu Güvenliği</li>
+        <li><i class="fas fa-network-wired"></i> Ağ Güvenliği</li>
+        <li><i class="fas fa-cogs"></i> Otomasyon ve Pipeline Yönetimi</li>
+        <li><i class="fas fa-cloud"></i> Bulut Tabanlı Dağıtımlar</li>
+        <li><i class="fas fa-bug"></i> Güvenlik Testleri ve İzleme</li>
+      </ul>
+    </div>
+    <div class="section-title">Açıklama</div>
+    <p>Güvenlik ve DevOps, modern yazılım geliştirme süreçlerinde kritik öneme sahiptir. Güvenli kodlama, kimlik doğrulama, otomasyon, sürekli entegrasyon ve dağıtım (CI/CD), konteyner teknolojileri ve izleme araçları ile hem uygulama güvenliği hem de operasyonel verimlilik sağlanır. Bu ders, yazılım projelerinde güvenlik ve DevOps kültürünü benimsemek isteyenler için temel ve ileri düzey bilgiler sunar.</p>
+  </div>
+</body>
+</html> 
